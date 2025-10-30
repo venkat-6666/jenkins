@@ -13,12 +13,8 @@ pipeline{
         stage('cloning repo') {
             steps {
                 sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
-            }
-        }
-        stage('building') {
-            steps {
-                sh 'mvn clean package -DskipTests=true'
-
+                dir('spring-petclinic') {
+                    sh 'mvn clean verify -DskipTests=true'
             }
         }
         stage('Create Dockerfile') {
