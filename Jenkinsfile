@@ -36,12 +36,13 @@ pipeline{
         }
         stage('docker builiding and running') {
             steps {
+                dir('spring-petclinic') {
                 echo 'Building and Running Docker Container'
                 sh 'docker build -t petclinic-app .'
                 sh 'docker run -d -p 8080:8080 petclinic-app'
             }
         }
-    
+        }
 
 
 }
