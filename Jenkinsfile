@@ -3,7 +3,7 @@ pipeline{
     stages {
         stage('installing git') {
             steps {
-                sh 'apt update && apt install git -y'
+                sh 'sudo apt update && apt install git -y'
             }
         }
         stage('cloning repo') {
