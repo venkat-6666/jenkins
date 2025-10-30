@@ -20,16 +20,18 @@ pipeline{
         }
         stage('Create Dockerfile') {
             steps {
+                dir('spring-petclinic') {
                 sh '''
                 cat > Dockerfile <<'EOF'
                 FROM openjdk:21-slim
                 WORKDIR /app
-                COPY spring-petclinic/target/spring-petclinic-3.5.0-SNAPSHOT.jar app.jar
+                COPY ./target/spring-petclinic-3.5.0-SNAPSHOT.jar app.jar
                 EXPOSE 8080
                 CMD ["java", "-jar", "app.jar"]
                 EOF
                 '''
-            }
+             }
+         }
         }
         stage('docker builiding and running') {
             steps {
