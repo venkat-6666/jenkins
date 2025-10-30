@@ -16,6 +16,7 @@ pipeline{
                 dir('spring-petclinic') {
                     sh 'mvn clean verify -DskipTests=true'
             }
+         }
         }
         stage('Create Dockerfile') {
             steps {
@@ -37,7 +38,7 @@ pipeline{
                 sh 'docker run -d -p 8080:8080 petclinic-app'
             }
         }
-    }
+    
 
 
 }
