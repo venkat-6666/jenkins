@@ -17,27 +17,27 @@ pipeline{
 
             }
         }
-        stage('docker build') {
+        stage('Create Dockerfile') {
             steps {
-                sh 'echo "cat > Dockerfile << 'EOF'
-                    FROM openjdk:21-slim
-                    RUN apt update -y 
-                    RUN apt install maven -y && apt install git -y
-                    WORKDIR /app
-                    RUN git clone https://github.com/spring-projects/spring-petclinic.git 
-                    RUN cd /app/spring-petclinic && mvn package -DskipTests
-                    EXPOSE 8080
-                    CMD ["java" ,"-jar", "/app/spring-petclinic/target/spring-petclinic-3.5.0-SNAPSHOT.jar"]
-                    EOF'
-                echo "Building Docker Image"
- 
+                sh '''
+                cat > Dockerfile <<'EOF'
+                FROM openjdk:21-slim
+                WORKDIR /app
+                COPY spring-petclinic/target/spring-petclinic-3.5.0-SNAPSHOT.jar app.jar
+                EXPOSE 8080
+                CMD ["java", "-jar", "app.jar"]
+                EOF
+                '''
             }
         }
-        stage('docker run') {
+        stage('docker builiding and running') {
             steps {
+                echo 'Building and Running Docker Container'
                 sh 'docker build -t petclinic-app .'
-                sh 'docker run -d -p 8080:8080 petclinic-app'
+                sh 'docker run -d -p 8081:8080 petclinic-app'
             }
         }
     }
+
+
 }
