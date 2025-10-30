@@ -12,6 +12,7 @@ pipeline{
         }
         stage('cloning repo') {
             steps {
+                sh 'rm -rf spring-petclinic'
                 sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
                 dir('spring-petclinic') {
                     sh 'mvn clean verify -DskipTests=true'
