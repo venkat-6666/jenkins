@@ -40,9 +40,8 @@ EOF
         stage('Build and Run Docker Image') {
             steps {
                 dir('spring-petclinic') {
-                    sh "cat -n Dockerfile | sed -n '1,10p'"
                     echo 'Building and Running Docker Container...'
-                    sh 'sudo DOCKER_BUILDKIT=1 docker build -t petclinic-app .'
+                    sh 'sudo docker build -t petclinic-app .'
                     sh 'sudo docker run -d -p 8089:8080 petclinic-app'
                 }
             }
