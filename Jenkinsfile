@@ -40,7 +40,7 @@ pipeline{
             steps {
                 dir('spring-petclinic') {
                 echo 'Building and Running Docker Container'
-                sh 'docker build -t petclinic-app /home/jenkins/workspace/Jenkins/spring-petclinic'
+                sh 'docker build -t petclinic-app /home/jenkins/workspace/spring-petclinic'
                 sh 'docker run -d -p 8089:8080 petclinic-app'
                 }
                 
