@@ -39,7 +39,6 @@ pipeline{
         stage('docker builiding and running') {
             steps {
                 dir('spring-petclinic') {
-                sh 'cat -n Dockerfile | sed -n '1,10p''
                 echo 'Building and Running Docker Container'
                 sh 'docker build -t petclinic-app /home/jenkins/workspace/spring-petclinic'
                 sh 'docker run -d -p 8089:8080 petclinic-app'
