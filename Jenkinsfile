@@ -42,8 +42,8 @@ EOF
                 dir('spring-petclinic') {
                     sh "cat -n Dockerfile | sed -n '1,10p'"
                     echo 'Building and Running Docker Container...'
-                    sh 'DOCKER_BUILDKIT=1 docker build -t petclinic-app .'
-                    sh 'docker run -d -p 8089:8080 petclinic-app'
+                    sh 'sudo DOCKER_BUILDKIT=1 docker build -t petclinic-app .'
+                    sh 'sudo docker run -d -p 8089:8080 petclinic-app'
                 }
             }
         }
