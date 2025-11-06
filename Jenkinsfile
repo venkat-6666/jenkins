@@ -42,7 +42,7 @@ EOF
                 dir('spring-petclinic') {
                     echo 'Building and Running Docker Container...'
                     sh 'sudo docker build -t petclinic-app .'
-                    sh 'sudo docker run -d -p 8089:8080 petclinic-app'
+                    sh 'sudo docker run -d -P 8089:8080 petclinic-app'
                 }
             }
         }
