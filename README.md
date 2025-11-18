@@ -1,16 +1,28 @@
 ## convert all tabs to spaces in the inventory script file 
+run the following command:
+
+```bash
 sed -i 's/\t/    /g' /opt/ansible/inventory/gcp_swarm_inventory.py
+```
 
 
 ## Giving execute permission to the inventory script
+run the following command:
+```bash
 chmod +x /opt/ansible/inventory/gcp_swarm_inventory.py
+```
 
 ## Test the inventory script
+run the following command:
+```bash
 ansible-inventory -i /opt/ansible/inventory/gcp_swarm_inventory.py --list
+```
 
 ## confirm ansible can connect to the manager node
+run the following command:
+```bash
 ansible -i /opt/ansible/inventory/gcp_swarm_inventory.py manager -m ping
----
+```
 
 ## artifact registry permissions (GAR)
 
